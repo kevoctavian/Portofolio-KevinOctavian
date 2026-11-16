@@ -1,0 +1,326 @@
+/* ==========================================================================
+   KEVIN OCTAVIANUS — PERSONAL PORTFOLIO 2026
+   Responsive Breakpoints & Viewport Adaptations
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Large Desktop (1440px and above)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+  .hero-stage {
+    column-gap: 3.5rem;
+  }
+
+  .hero-portrait-frame {
+    width: 350px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Laptop / Compact Desktop (1024px – 1439px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-stage {
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 1.75rem;
+  }
+
+  .hero-portrait-wrapper {
+    align-self: start;
+    margin-top: -50px;
+  }
+
+  .hero-portrait-frame {
+    width: clamp(260px, 26vw, 320px);
+  }
+
+  .hero-left-content {
+    max-width: 300px;
+    gap: 0.85rem;
+  }
+
+  .hero-role-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-description {
+    font-size: 0.9375rem;
+  }
+
+  .hero-right-content {
+    gap: 0.75rem;
+  }
+
+  .social-pill {
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Tablet (768px – 1023px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .page-wrapper {
+    padding: 16px;
+  }
+
+  .editorial-canvas {
+    border-radius: var(--radius-lg);
+  }
+
+  /* Grid transforms to 8 columns */
+  .grid-editorial {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  /* Navigation adjustments */
+  .nav-center {
+    display: none; /* Collapsed into mobile drawer on tablet & mobile */
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .editorial-nav {
+    padding: 1.25rem 1.75rem;
+  }
+
+  /* Hero section on tablet */
+  .hero-section {
+    min-height: auto;
+    padding: 1.75rem 1.75rem 1.5rem;
+  }
+
+  /* Hero stage vertical flow */
+  .hero-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-portrait-wrapper {
+    order: 1;
+    margin-top: -10px;
+    width: 100%;
+  }
+
+  .hero-portrait-frame {
+    width: clamp(260px, 40vw, 330px);
+    margin: 0 auto;
+  }
+
+  .hero-left-content {
+    order: 2;
+    max-width: 520px;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .hero-kicker,
+  .hero-meta-location,
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-right-content {
+    order: 3;
+    align-items: center;
+    padding-bottom: 0;
+    width: 100%;
+  }
+
+  .hero-right-kicker {
+    text-align: center;
+  }
+
+  .social-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-footer-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .hero-footer-center {
+    position: static;
+    transform: none;
+    order: 3;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Mobile (375px – 767px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .page-wrapper {
+    padding: 8px;
+  }
+
+  .editorial-canvas {
+    border-radius: var(--radius-md);
+  }
+
+  /* Grid transforms to 4 columns */
+  .grid-editorial {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Header on Mobile */
+  .editorial-nav {
+    padding: 0.875rem 1rem;
+  }
+
+  .status-pill {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .btn-talk-nav {
+    display: none; /* Kept in mobile drawer to prevent collision */
+  }
+
+  /* Hero Section on Mobile */
+  .hero-section {
+    padding: 1.25rem 1rem 1.25rem;
+  }
+
+  .hero-header {
+    margin-top: 0.25rem;
+  }
+
+  .hero-name {
+    flex-direction: column;
+    gap: 0;
+    line-height: 0.9;
+  }
+
+  .hero-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-portrait-wrapper {
+    order: 1;
+    margin-top: -10px;
+    width: 100%;
+  }
+
+  .hero-portrait-frame {
+    width: clamp(220px, 68vw, 275px);
+    aspect-ratio: 0.96 / 1;
+    margin: 0 auto;
+  }
+
+  .hero-left-content {
+    order: 2;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  .hero-role-title {
+    font-size: 1.35rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    max-width: 320px;
+  }
+
+  .hero-kicker,
+  .hero-meta-location,
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-actions .btn-dark {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .hero-right-content {
+    order: 3;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 0;
+    gap: 0.75rem;
+  }
+
+  .hero-right-kicker {
+    text-align: center;
+  }
+
+  .social-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .social-pill {
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+  }
+
+  /* Footer Bar on Mobile */
+  .hero-footer-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .hero-footer-meta,
+  .hero-footer-time {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-footer-center {
+    order: 2;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Small Mobile (374px and below)
+   -------------------------------------------------------------------------- */
+@media (max-width: 374px) {
+  .hero-name {
+    font-size: 2.75rem;
+  }
+
+  .status-pill {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+
+  .hero-portrait-frame {
+    width: 210px;
+  }
+}

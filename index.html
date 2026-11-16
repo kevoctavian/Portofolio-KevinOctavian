@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kevin Octavianus — Aspiring Web Developer</title>
+  <meta name="description" content="Portfolio of Kevin Octavianus — Aspiring Web Developer with an Informatics background. Building practical, functional, and user-friendly web applications that solve real-world problems.">
+  <meta name="author" content="Kevin Octavianus">
+  <meta name="theme-color" content="#F5F5F3">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kevin Octavianus — Aspiring Web Developer">
+  <meta property="og:description" content="Building practical, functional, and user-friendly web applications that solve real-world problems.">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Modular CSS Architecture -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Motion layer: stacking cards, ghost titles, cursor, previews -->
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+  <!-- Scroll progress + custom cursor + floating hover preview (decorative) -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-label" aria-hidden="true"><span></span></div>
+  <div class="hover-preview" aria-hidden="true">
+    <div class="hover-preview-card">
+      <img alt="" decoding="async">
+      <div class="hover-preview-tile"><span class="hp-kicker"></span><span class="hp-title"></span></div>
+    </div>
+  </div>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ------------------------------------------------------------------------
+       1. Editorial Preloader
+       ------------------------------------------------------------------------ -->
+  <div id="preloader" role="status" aria-live="polite" aria-label="Loading portfolio experience">
+    <div class="preloader-header">
+      <span class="text-mono">KO — PORTFOLIO 2026</span>
+      <span class="text-mono">WEB DEVELOPER // INFORMATICS</span>
+    </div>
+
+    <div class="preloader-center">
+      <div class="preloader-monogram">
+        <span>KEVIN</span> <span>OCTAVIANUS</span>
+      </div>
+      <p class="text-mono" style="font-size: 0.75rem;">ASPIRING WEB DEVELOPER &middot; PRACTICAL PROBLEM SOLVER</p>
+    </div>
+
+    <div class="preloader-footer">
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar" id="preloader-progress"></div>
+      </div>
+      <div class="preloader-counter" id="preloader-count">00%</div>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------------------------------
+       2. Page Canvas Frame
+       ------------------------------------------------------------------------ -->
+  <div class="page-wrapper">
+    <div class="editorial-canvas">
+
+      <!-- TOP NAVIGATION -->
+      <header class="editorial-nav" role="banner">
+        <!-- Left: Status Indicator -->
+        <div class="nav-col nav-left animate-nav-item">
+          <div class="status-pill" title="Open to Junior/Associate Web Developer roles and opportunities">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Available for Opportunities</span>
+          </div>
+        </div>
+
+        <!-- Center: Primary Navigation Links -->
+        <nav class="nav-col nav-center animate-nav-item" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li>
+              <a href="#work" class="nav-link">
+                Work <span class="nav-bracket">[02]</span>
+              </a>
+            </li>
+            <li>
+              <a href="#about" class="nav-link">About</a>
+            </li>
+            <li>
+              <a href="#experience" class="nav-link">Experience</a>
+            </li>
+            <li>
+              <a href="#contact" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Right: CTA Button & Mobile Trigger -->
+        <div class="nav-col nav-right animate-nav-item">
+          <a href="#contact" class="btn-dark btn-talk-nav">
+            <span>Let's Talk</span>
+            <span class="arrow-icon" aria-hidden="true">↗</span>
+          </a>
+
+          <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- MOBILE DRAWER -->
+      <div class="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="mobile-drawer-content">
+          <div>
+            <div class="status-pill" style="margin-bottom: 2rem;">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>Available for Opportunities</span>
+            </div>
+            <ul class="mobile-drawer-links">
+              <li><a href="#work" class="mobile-drawer-link">Work <sup class="meta-count">[02]</sup></a></li>
+              <li><a href="#about" class="mobile-drawer-link">About</a></li>
+              <li><a href="#experience" class="mobile-drawer-link">Experience</a></li>
+              <li><a href="#contact" class="mobile-drawer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <a href="#contact" class="btn-dark" style="width: 100%;">
+              <span>Let's Talk</span>
+              <span class="arrow-icon" aria-hidden="true">↗</span>
+            </a>
+            <span class="text-mono" style="text-align: center; font-size: 0.7rem;">
+              JAKARTA &middot; TANGERANG, ID
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT WRAPPER -->
+      <main id="main-content">
+
+        <!-- ================================================================
+             SECTION 1: HERO PROTOTYPE (Preserved & Refined)
+             ================================================================ -->
+        <section class="hero-section" data-stack aria-label="Introduction and Hero">
+
+          <!-- OVERSIZED EXPRESSIVE HERO NAME -->
+          <div class="hero-header">
+            <h1 class="hero-name" aria-label="Kevin Octavianus">
+              <span class="hero-name-first text-outline animate-hero-name">KEVIN</span>
+              <span class="hero-name-last text-solid animate-hero-name">OCTAVIANUS</span>
+            </h1>
+          </div>
+
+          <!-- MAIN HERO STAGE: 3-COLUMN EDITORIAL COMPOSITION -->
+          <div class="hero-stage">
+
+            <!-- LEFT EDITORIAL COLUMN: Title, Intro & CTA -->
+            <div class="hero-left-content">
+              <div class="hero-kicker animate-hero-intro">
+                <span class="text-mono">// 01 &mdash; ASPIRING WEB DEVELOPER</span>
+              </div>
+
+              <h2 class="hero-role-title animate-hero-intro">
+                Web Application Developer
+              </h2>
+
+              <p class="hero-description animate-hero-intro">
+                Building practical, functional, and user-friendly web applications that solve real-world problems.
+              </p>
+
+              <div class="hero-meta-location animate-hero-intro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>Tangerang &amp; Jakarta, Indonesia</span>
+              </div>
+
+              <div class="hero-actions animate-hero-intro">
+                <a href="#work" class="btn-dark">
+                  <span>Explore Work</span>
+                  <span class="arrow-icon" aria-hidden="true">&darr;</span>
+                </a>
+                <a href="#about" class="btn-pill">
+                  <span>About Kevin</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- CENTER COLUMN: REAL EDITORIAL PORTRAIT PHOTOGRAPH -->
+            <div class="hero-portrait-wrapper animate-portrait">
+              <figure class="hero-portrait-frame">
+                <picture>
+                  <source srcset="assets/images/profile/kevin-portrait.png" type="image/png">
+                  <img 
+                    src="assets/images/profile/kevin-portrait.jpg" 
+                    alt="Portrait photograph of Kevin Octavianus, Web Developer &amp; Fullstack Engineer" 
+                    class="hero-portrait-img"
+                    width="900" 
+                    height="908"
+                    fetchpriority="high"
+                    decoding="async"
+                  >
+                </picture>
+              </figure>
+            </div>
+
+            <!-- RIGHT EDITORIAL COLUMN: SOCIAL LINKS PILLS -->
+            <div class="hero-right-content">
+              <div class="hero-right-kicker animate-social-item">
+                <span class="text-mono">// CONNECT &amp; NETWORK</span>
+              </div>
+
+              <ul class="social-list" aria-label="Social Profiles">
+                <li class="animate-social-item">
+                  <a href="https://linkedin.com/in/kevin-octavian-710gbuall" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn profile of Kevin Octavianus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                      <rect width="4" height="12" x="2" y="9"/>
+                      <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                </li>
+                <li class="animate-social-item">
+                  <a href="https://github.com/kevoctavian" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub profile of Kevin Octavianus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                      <path d="M9 18c-4.51 2-5-2-7-2"/>
+                    </svg>
+                    <span>GitHub</span>
+                  </a>
+                </li>
+                <li class="animate-social-item">
+                  <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=kevinoctavian710@gmail.com" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Email Kevin Octavianus (opens Gmail in a new tab)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect width="20" height="16" x="2" y="4" rx="2"/>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    <span>Email</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- BOTTOM CONTENT: TECHNICAL METADATA, SCROLL INDICATOR & TIME -->
+          <div class="hero-footer-bar">
+            <!-- Left Metadata -->
+            <div class="hero-footer-meta">
+              <span class="text-mono-dark">PORTFOLIO // VOL. 2026</span>
+              <span class="text-mono">INFORMATICS &middot; WEB DEVELOPMENT</span>
+            </div>
+
+            <!-- Center: Scroll Indicator -->
+            <div class="hero-footer-center animate-scroll-indicator">
+              <a href="#work" class="scroll-indicator" aria-label="Scroll to selected works">
+                <div class="scroll-mouse" aria-hidden="true"></div>
+                <span class="scroll-label">SCROLL</span>
+              </a>
+            </div>
+
+            <!-- Right: Live Local Time in Jakarta -->
+            <div class="hero-footer-time">
+              <span class="text-mono">LOCAL TIME (WIB)</span>
+              <span class="time-display live-time-target" id="live-jakarta-time">13:30:00 WIB</span>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================
+             SECTION 2: SELECTED WORKS (Problem-Solution Storytelling)
+             ================================================================ -->
+        <section class="portfolio-section" id="work" data-stack aria-label="Selected Major Projects">
+          <div class="section-header-editorial">
+            <div class="section-kicker-row">
+              <span class="text-mono">// 02 &mdash; SELECTED WORKS</span>
+              <span class="text-mono">[02 PROJECTS]</span>
+            </div>
+            <span class="ghost-title" aria-hidden="true" data-ghost>PORTFOLIO</span>
+            <h2 class="section-title-large" data-split>/SELECTED WORK</h2>
+            <p class="section-subtitle-editorial">
+              Practical web applications built with clean architecture, focused on solving operational bottlenecks and real-world classification problems.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+
+            <!-- PROJECT 01: INVENTORY MANAGEMENT SYSTEM -->
+            <article class="project-card" aria-labelledby="proj-title-1">
+              <div class="project-media-wrapper" data-cursor="view" data-open-project="inventory">
+                <span class="project-tag-floating">INTERNAL BUSINESS APPLICATION</span>
+                <div class="project-media-parallax">
+                  <img 
+                  src="assets/images/projects/inventory/min-max.png" 
+                  alt="Internal Inventory Management System screenshot showing Stock Min/Max reporting module" 
+                  class="project-img" 
+                  loading="lazy"
+                >
+                </div>
+                <span class="project-open-badge" aria-hidden="true">&nearr;</span>
+              </div>
+
+              <div class="project-body">
+                <div class="project-header-meta">
+                  <span class="text-mono">PROJECT 01 &middot; DJANGO / POSTGRESQL</span>
+                  <span class="text-mono">ENTERPRISE WEB</span>
+                </div>
+
+                <h3 class="project-title" id="proj-title-1">
+                  Internal Inventory Management System
+                </h3>
+
+                <div class="project-pillars">
+                  <div class="pillar-block">
+                    <span class="pillar-label">The Problem</span>
+                    <p class="pillar-desc">
+                      Inventory and operational records were maintained in separate spreadsheet files that had to be stored and managed individually. Access to up-to-date information and centralized reporting was more difficult, requiring a structured and centralized data management approach.
+                    </p>
+                  </div>
+
+                  <div class="pillar-block">
+                    <span class="pillar-label">The Solution</span>
+                    <p class="pillar-desc">
+                      An internal web application backed by PostgreSQL providing centralized data management, integrated inventory and purchasing workflows, goods receipt and QC modules, stock monitoring and reporting, structured database storage, and easier data retrieval and filtering.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="project-tech-stack" aria-label="Technologies used">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">AJAX</span>
+                </div>
+
+                <div class="project-footer-action">
+                  <span class="text-mono" style="font-size: 0.7rem;">PT JAVINCI BERKAT KREATIF SENTOSA</span>
+                  <button type="button" class="btn-case-study" data-open-project="inventory" aria-haspopup="dialog">
+                    <span>View Case Study</span>
+                    <span class="arrow-icon" aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- PROJECT 02: RICE LEAF DISEASE CLASSIFICATION -->
+            <article class="project-card" aria-labelledby="proj-title-2">
+              <div class="project-media-wrapper" data-cursor="view" data-open-project="rice-leaf">
+                <span class="project-tag-floating">MACHINE LEARNING WEB APPLICATION</span>
+                <div class="project-media-parallax">
+                  <img 
+                  src="assets/images/projects/rice-leaf/DiseaseInfo.png" 
+                  alt="Rice Leaf Disease Classification application interface displaying disease identification information" 
+                  class="project-img" 
+                  loading="lazy"
+                >
+                </div>
+                <span class="project-open-badge" aria-hidden="true">&nearr;</span>
+              </div>
+
+              <div class="project-body">
+                <div class="project-header-meta">
+                  <span class="text-mono">PROJECT 02 &middot; RANDOM FOREST / OPENCV</span>
+                  <span class="text-mono">AGRICULTURAL TECH</span>
+                </div>
+
+                <h3 class="project-title" id="proj-title-2">
+                  Rice Leaf Disease Classification
+                </h3>
+
+                <div class="project-pillars">
+                  <div class="pillar-block">
+                    <span class="pillar-label">The Problem</span>
+                    <p class="pillar-desc">
+                      Identifying rice leaf diseases manually can be challenging, subjective, and time-consuming for farmers and agricultural inspectors.
+                    </p>
+                  </div>
+
+                  <div class="pillar-block">
+                    <span class="pillar-label">The Solution</span>
+                    <p class="pillar-desc">
+                      A web-based image classification application using Random Forest to classify rice leaf conditions into Brown Bacterial Leaf Blight, Rice Blast, Tungro, and Healthy leaf conditions.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="project-tech-stack" aria-label="Technologies used">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">Random Forest</span>
+                  <span class="tech-tag">OpenCV</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                </div>
+
+                <div class="project-footer-action">
+                  <span class="text-mono" style="font-size: 0.7rem;">INFORMATICS CAPSTONE</span>
+                  <button type="button" class="btn-case-study" data-open-project="rice-leaf" aria-haspopup="dialog">
+                    <span>View Case Study</span>
+                    <span class="arrow-icon" aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ================================================================
+             SECTION 3: ABOUT ME (Identity-First Storytelling)
+             ================================================================ -->
+        <section class="portfolio-section" id="about" data-stack aria-label="About Kevin Octavianus">
+          <div class="section-header-editorial">
+            <div class="section-kicker-row">
+              <span class="text-mono">// 03 &mdash; IDENTITY &amp; DIRECTION</span>
+              <span class="text-mono">INFORMATICS GRADUATE</span>
+            </div>
+            <span class="ghost-title" aria-hidden="true" data-ghost>PROFILE</span>
+            <h2 class="section-title-large" data-split>/ABOUT KEVIN</h2>
+          </div>
+
+          <div class="about-layout">
+
+            <!-- Left: Identity Narrative -->
+            <div class="about-bio-pane">
+              <p class="about-lead-statement" data-scrub-words>
+                I'm Kevin Octavianus, an aspiring Web Developer passionate about building practical web applications that solve real-world problems.
+              </p>
+
+              <p class="about-paragraph">
+                With a background in Informatics and hands-on experience in web application development, I enjoy turning ideas and complex workflows into functional, user-friendly digital solutions.
+              </p>
+
+              <p class="about-paragraph">
+                I'm continuously growing my skills in frontend and backend development, with a goal of becoming a well-rounded Web Developer.
+              </p>
+
+              <div class="about-highlight-box">
+                <strong>Core Development Philosophy:</strong> Writing clear, structured code, designing intuitive operational interfaces, and focusing on reliable system functionality that genuinely helps users complete their tasks effectively.
+              </div>
+            </div>
+
+            <!-- Right: Education, Credentials & Core Toolkit -->
+            <div class="about-credentials-pane">
+              
+              <!-- Education Card -->
+              <div class="credentials-card">
+                <span class="credentials-card-title">Educational Foundation</span>
+                <div class="credentials-content-item">
+                  <h4 class="credential-degree">Informatics Graduate</h4>
+                  <span class="credential-meta">Universitas Bunda Mulia &middot; GPA: <span data-count="3.68" data-decimals="2">3.68</span></span>
+                  <p class="credential-coursework">Degree completed; graduation ceremony expected December 2026.</p>
+                  <p class="credential-coursework">
+                    <strong>Key Coursework:</strong> Database Systems, Software Engineering, Web Programming, Data Structures &amp; Algorithms, Human-Computer Interaction (UI/UX).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Technical Skillset Matrix -->
+              <div class="credentials-card">
+                <span class="credentials-card-title">Technical Skillset &amp; Toolkit</span>
+                
+                <div class="skills-matrix">
+                  <div class="skill-row">
+                    <span class="skill-row-label">Languages:</span>
+                    <div class="skill-pills-row">
+                      <span class="tech-tag">Python</span>
+                      <span class="tech-tag">JavaScript</span>
+                      <span class="tech-tag">PHP</span>
+                      <span class="tech-tag">SQL</span>
+                    </div>
+                  </div>
+
+                  <div class="skill-row">
+                    <span class="skill-row-label">Frameworks &amp; Web:</span>
+                    <div class="skill-pills-row">
+                      <span class="tech-tag">Django</span>
+                      <span class="tech-tag">HTML5 / CSS3</span>
+                      <span class="tech-tag">AJAX / jQuery</span>
+                      <span class="tech-tag">REST APIs</span>
+                    </div>
+                  </div>
+
+                  <div class="skill-row">
+                    <span class="skill-row-label">Databases &amp; Systems:</span>
+                    <div class="skill-pills-row">
+                      <span class="tech-tag">PostgreSQL</span>
+                      <span class="tech-tag">MySQL</span>
+                      <span class="tech-tag">SQL Server</span>
+                      <span class="tech-tag">Git / GitHub</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================================================================
+             SECTION 4: PRACTICAL EXPERIENCE
+             ================================================================ -->
+        <section class="portfolio-section is-dark" id="experience" data-stack aria-label="Practical Work History">
+          <div class="section-header-editorial">
+            <div class="section-kicker-row">
+              <span class="text-mono">// 04 &mdash; PRACTICAL EXPERIENCE</span>
+              <span class="text-mono">WORK HISTORY &amp; ROLES</span>
+            </div>
+            <span class="ghost-title" aria-hidden="true" data-ghost>EXPERIENCE</span>
+            <h2 class="section-title-large" data-split>/EXPERIENCE</h2>
+            <p class="section-subtitle-editorial">
+              Hands-on experience in business application development, internal workflow automation, end-user technical support, and academic tutoring.
+            </p>
+          </div>
+
+          <div class="experience-list" data-exp-list>
+
+            <!-- Role 01: Web App Developer & IT Support -->
+            <article class="experience-row is-open" data-exp data-preview-img="assets/images/projects/inventory/min-max.png" data-preview-kicker="Inventory System" data-cursor="open">
+              <div class="experience-period">
+                <span>September 2025 &mdash; August 2026</span>
+              </div>
+
+              <div class="experience-main">
+                <h3 class="experience-role-title">
+                  <button type="button" class="exp-toggle" aria-expanded="true" aria-controls="exp-panel-1" id="exp-btn-1">
+                    <span>Web Application Developer <span aria-hidden="true">+</span> IT Support</span>
+                    <span class="exp-icon" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <span class="experience-company-name">PT Javinci Berkat Kreatif Sentosa &middot; Concurrent responsibilities &middot; Full-Time</span>
+
+                <div class="exp-panel" id="exp-panel-1" role="region" aria-labelledby="exp-btn-1">
+                  <div class="exp-panel-inner">
+                    <ul class="experience-bullet-list">
+                      <li>Developed and maintained internal web-based business applications to support inventory, purchasing, quality control, and reporting processes.</li>
+                      <li>Built Stock Min/Max reporting modules and inventory mutation summary systems to improve inventory monitoring and operational decision-making.</li>
+                      <li>Developed Quality Control (QC) inspection modules with complete CRUD functionality for raw material verification and management.</li>
+                      <li>Implemented PDF shipment receipt upload and validation features to streamline document management and verification workflows.</li>
+                      <li>Developed and enhanced Purchase Order (PO) management systems integrated with goods receipt workflows, automated calculations, and AJAX-based autocomplete.</li>
+                      <li>Provided end-user technical support, hardware/software troubleshooting, and network maintenance following IT Service Management practices.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-location-tag">
+                <span>Jakarta, Indonesia</span>
+              </div>
+            </article>
+
+            <!-- Role 02: Academic Tutor -->
+            <article class="experience-row" data-exp data-preview-img="assets/images/experience/genius-bimbel.jpg" data-preview-pos="50% 35%" data-preview-kicker="Genius Bimbel" data-cursor="open">
+              <div class="experience-period">
+                <span>Oct 2024 &mdash; May 2025</span>
+              </div>
+
+              <div class="experience-main">
+                <h3 class="experience-role-title">
+                  <button type="button" class="exp-toggle" aria-expanded="false" aria-controls="exp-panel-2" id="exp-btn-2">
+                    <span>Academic Tutor</span>
+                    <span class="exp-icon" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <span class="experience-company-name">Genius Bimbel &middot; Part-Time</span>
+
+                <div class="exp-panel" id="exp-panel-2" role="region" aria-labelledby="exp-btn-2">
+                  <div class="exp-panel-inner">
+                    <ul class="experience-bullet-list">
+                      <li>Guided students across various subjects, primarily Mathematics at elementary and junior high school levels, tailored to each student's learning pace.</li>
+                      <li>Simplified complex mathematical concepts (arithmetic, algebra, and geometry) into clear, structured lessons to build solid academic foundations.</li>
+                      <li>Developed strong structured communication, active listening, patience, and problem-decomposition skills through personalized teaching.</li>
+                    </ul>
+                    <figure class="exp-figure">
+                      <img src="assets/images/experience/genius-bimbel.jpg" alt="Kevin tutoring a student at Genius Bimbel, with open notebooks and worksheets on the table" loading="lazy" decoding="async" width="1400" height="1050">
+                    </figure>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-location-tag">
+                <span>Tangerang, Indonesia</span>
+              </div>
+            </article>
+
+            <!-- Credential: CertNexus GenAIBIZ -->
+            <article class="experience-row" data-exp data-preview-img="assets/images/experience/certnexus-genaibiz.jpg" data-preview-pos="50% 50%" data-preview-kicker="CertNexus" data-cursor="open">
+              <div class="experience-period">
+                <span>January 2026</span>
+              </div>
+
+              <div class="experience-main">
+                <h3 class="experience-role-title">
+                  <button type="button" class="exp-toggle" aria-expanded="false" aria-controls="exp-panel-3" id="exp-btn-3">
+                    <span>CertNexus &mdash; GenAIBIZ&trade; (GAZ-210)</span>
+                    <span class="exp-icon" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <span class="experience-company-name">CertNexus Credential</span>
+
+                <div class="exp-panel" id="exp-panel-3" role="region" aria-labelledby="exp-btn-3">
+                  <div class="exp-panel-inner">
+                    <p class="pillar-desc">
+                      Demonstrated foundational knowledge of Generative Artificial Intelligence (GenAI), including AI-driven business productivity, workflow automation, and responsible AI practices.
+                    </p>
+                    <figure class="exp-figure exp-figure--doc">
+                      <img src="assets/images/experience/certnexus-genaibiz.jpg" alt="CertNexus GenAIBIZ certificate awarded to Kevin Octavianus Santoso, certified January 7, 2026" loading="lazy" decoding="async" width="1500" height="1167">
+                    </figure>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-location-tag">
+                <span>Credential ID: GAZ-210</span>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ================================================================
+             SECTION 5: CONTACT & REACH OUT
+             ================================================================ -->
+        <section class="portfolio-section" id="contact" data-stack aria-label="Contact Information">
+          <div class="section-header-editorial">
+            <div class="section-kicker-row">
+              <span class="text-mono">// 05 &mdash; GET IN TOUCH</span>
+              <span class="text-mono">DIRECT INQUIRIES</span>
+            </div>
+            <span class="ghost-title" aria-hidden="true" data-ghost>CONNECT</span>
+            <h2 class="section-title-large" data-split>/CONTACT</h2>
+          </div>
+
+          <div class="contact-card-editorial">
+            
+            <div class="contact-left">
+              <h3 class="contact-headline" data-split>
+                HAVE AN OPPORTUNITY OR WANT TO CONNECT?
+              </h3>
+              <p class="contact-desc">
+                I am actively seeking junior or associate Web Developer opportunities where I can apply my skills in Python, Django, JavaScript, and databases to build practical business solutions.
+              </p>
+
+              <div class="contact-social-row">
+                <a href="https://linkedin.com/in/kevin-octavian-710gbuall" target="_blank" rel="noopener noreferrer" class="btn-contact-social">
+                  <span>LinkedIn</span> ↗
+                </a>
+                <a href="https://github.com/kevoctavian" target="_blank" rel="noopener noreferrer" class="btn-contact-social">
+                  <span>GitHub</span> ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-right">
+              
+              <!-- Direct Email Card with Click-to-Copy Action -->
+              <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=kevinoctavian710@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-direct-link" id="copy-email-btn" title="Compose an email to Kevin in Gmail" aria-label="Email kevinoctavian710@gmail.com (opens Gmail in a new tab)">
+                <div class="contact-direct-info">
+                  <span class="contact-label-sub">Direct Email Address</span>
+                  <span class="contact-value-main">kevinoctavian710@gmail.com</span>
+                </div>
+                <span class="arrow-icon" style="font-size: 1.25rem;">↗</span>
+              </a>
+
+              <!-- Location / Base Info -->
+              <div class="contact-direct-link" style="cursor: default;">
+                <div class="contact-direct-info">
+                  <span class="contact-label-sub">Location &amp; Working Hours</span>
+                  <span class="contact-value-main">Tangerang &amp; Jakarta, Indonesia (WIB / UTC+7)</span>
+                </div>
+                <span style="font-size: 1.1rem; opacity: 0.7;">📍</span>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+
+      <!-- EDITORIAL GLOBAL FOOTER -->
+      <footer class="editorial-footer-bar" role="contentinfo">
+        <div class="footer-copy">
+          <span class="text-mono-dark">&copy; 2026 KEVIN OCTAVIANUS &middot; ALL RIGHTS RESERVED</span>
+          <span class="text-mono">MONOCHROME EDITORIAL DESIGN &middot; BUILT WITH VANILLA JS &amp; GSAP</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <span class="text-mono live-time-target">13:30:00 WIB</span>
+          <button type="button" class="btn-back-to-top" aria-label="Back to top of the page">
+            <span>&uarr; TOP</span>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------------------------------
+       3. Accessible Project Case Study Modal Dialog
+       ------------------------------------------------------------------------ -->
+  <div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-project-title">
+    <div class="modal-dialog-box" tabindex="-1" data-lenis-prevent>
+      
+      <header class="modal-header">
+        <div>
+          <span class="text-mono" id="modal-project-role">ROLE &middot; COMPANY</span>
+          <h3 class="project-title" id="modal-project-title" style="margin-top: 4px; font-size: 1.5rem;">Case Study Title</h3>
+          <span class="text-mono" id="modal-project-subtitle" style="font-size: 0.75rem; color: var(--color-muted);">Subtitle</span>
+        </div>
+
+        <button type="button" class="modal-close-btn" aria-label="Close case study dialog">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </header>
+
+      <div class="modal-body">
+        
+        <div class="pillar-block">
+          <span class="pillar-label">The Problem</span>
+          <p class="pillar-desc" id="modal-project-problem" style="font-size: 0.95rem;"></p>
+        </div>
+
+        <div class="pillar-block">
+          <span class="pillar-label">The Solution</span>
+          <p class="pillar-desc" id="modal-project-solution" style="font-size: 0.95rem;"></p>
+        </div>
+
+        <div class="pillar-block">
+          <span class="pillar-label">Key Responsibilities &amp; Contributions</span>
+          <ul class="experience-bullet-list" id="modal-project-contributions" style="margin-top: 8px;"></ul>
+        </div>
+
+        <div class="pillar-block">
+          <span class="pillar-label">Technologies &amp; Architecture</span>
+          <div class="project-tech-stack" id="modal-project-tech" style="margin-top: 8px;"></div>
+        </div>
+
+        <div class="pillar-block">
+          <span class="pillar-label">Feature Previews &amp; Screen Captures</span>
+          <div class="modal-gallery-row" id="modal-project-gallery" style="margin-top: 8px;"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Non-blocking Accessible Toast Notification Component -->
+  <div id="editorial-toast" class="editorial-toast" role="status" aria-live="polite"></div>
+
+  <!-- ------------------------------------------------------------------------
+       Vendor Scripts (Local with High-Speed Fallbacks)
+       ------------------------------------------------------------------------ -->
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/vendor/lucide.min.js"></script>
+
+  <!-- Modular Application Scripts -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,765 @@
+/* ==========================================================================
+   KEVIN OCTAVIANUS — PERSONAL PORTFOLIO 2026
+   Phase 02: Sections (Selected Works, About, Experience, Contact, Modal)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Shared Section Header System
+   -------------------------------------------------------------------------- */
+.portfolio-section {
+  position: relative;
+  width: 100%;
+  padding: clamp(3.5rem, 6vw, 6.5rem) clamp(1.5rem, 4vw, 4rem);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.section-header-editorial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: clamp(2.5rem, 4vw, 4.5rem);
+}
+
+.section-kicker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.section-title-large {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-1);
+  font-weight: var(--fw-bold);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tighter);
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.section-subtitle-editorial {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  color: var(--color-muted);
+  max-width: 640px;
+  line-height: var(--lh-body);
+  margin-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Selected Works: Compact Problem-Solution Project Cards
+   -------------------------------------------------------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  width: 100%;
+}
+
+.project-card {
+  position: relative;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  transition: transform var(--duration-normal) var(--ease-editorial),
+              border-color var(--duration-normal) var(--ease-editorial),
+              box-shadow var(--duration-normal) var(--ease-editorial);
+}
+
+.project-card:hover {
+  border-color: var(--color-text);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card { will-change: transform; }
+}
+
+.project-media-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #E8E8E6;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(100%) contrast(105%);
+  transition: transform 0.6s var(--ease-editorial),
+              filter 0.6s var(--ease-editorial);
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.03);
+  filter: grayscale(0%) contrast(100%);
+}
+
+.project-tag-floating {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(23, 23, 23, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--color-surface);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  letter-spacing: var(--tracking-wide);
+  z-index: 2;
+}
+
+.project-body {
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1.25rem;
+}
+
+.project-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-3);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.project-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.pillar-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pillar-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.pillar-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0.25rem;
+}
+
+.tech-tag {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 5px 11px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text);
+  font-weight: var(--fw-medium);
+}
+
+.project-footer-action {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.btn-case-study {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  padding: 8px 0;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: gap var(--duration-fast) var(--ease-editorial);
+}
+
+.btn-case-study:hover {
+  gap: 12px;
+}
+
+.btn-case-study .arrow-icon {
+  font-size: 1.1em;
+  transition: transform var(--duration-fast) var(--ease-editorial);
+}
+
+.btn-case-study:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   3. About Section: Identity-First Storytelling
+   -------------------------------------------------------------------------- */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.about-bio-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-lead-statement {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  color: var(--color-text);
+  letter-spacing: var(--tracking-tight);
+}
+
+.about-paragraph {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.about-highlight-box {
+  background-color: var(--color-bg);
+  border-left: 2px solid var(--color-dark);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.about-credentials-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.credentials-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.credentials-card-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.credentials-content-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.credential-degree {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+.credential-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-muted);
+}
+
+.credential-coursework {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-top: 4px;
+}
+
+/* Skills Matrix */
+.skills-matrix {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skill-row-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+}
+
+.skill-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Practical Experience Section: Chronological Rows
+   -------------------------------------------------------------------------- */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}
+
+.experience-row {
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  gap: 2rem;
+  padding: clamp(1.75rem, 3vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  align-items: start;
+}
+
+.experience-period {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.experience-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-role-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.experience-company-name {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-muted);
+}
+
+.experience-bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  list-style: none;
+}
+
+.experience-bullet-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
+.experience-bullet-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-dark);
+}
+
+.experience-location-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   5. Contact Section: Editorial Conversion Card
+   -------------------------------------------------------------------------- */
+.contact-card-editorial {
+  background-color: var(--color-dark);
+  color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: clamp(2.5rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-headline {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-2);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-surface);
+  text-transform: uppercase;
+}
+
+.contact-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: #B5B5B5;
+  line-height: 1.65;
+  max-width: 500px;
+}
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-direct-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  color: var(--color-surface);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) ease,
+              border-color var(--duration-fast) ease,
+              transform var(--duration-fast) var(--ease-editorial);
+}
+
+.contact-direct-link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(4px);
+}
+
+.contact-direct-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-label-sub {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: #9E9E9E;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.contact-value-main {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: var(--fw-semibold);
+  color: var(--color-surface);
+}
+
+.contact-social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-contact-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-surface);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-editorial);
+}
+
+.btn-contact-social:hover {
+  background-color: var(--color-surface);
+  color: var(--color-dark);
+  border-color: var(--color-surface);
+}
+
+/* --------------------------------------------------------------------------
+   6. Editorial Global Footer
+   -------------------------------------------------------------------------- */
+.editorial-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem clamp(1.5rem, 4vw, 4rem);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.btn-back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-editorial);
+}
+
+.btn-back-to-top:hover {
+  background-color: var(--color-dark);
+  color: var(--color-surface);
+  border-color: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   7. Accessible Project Case Study Modal Dialog
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(23, 23, 23, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: var(--z-preloader);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-editorial);
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog-box {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(18px) scale(.985);
+  opacity: 0;
+  transition: transform 0.32s var(--ease-editorial), opacity 0.24s ease;
+  will-change: transform, opacity;
+}
+
+.modal-backdrop.is-open .modal-dialog-box {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal-header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.modal-close-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-editorial);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--color-dark);
+  color: var(--color-surface);
+  border-color: var(--color-dark);
+}
+
+.modal-body {
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.modal-gallery-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.modal-gallery-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: #F0F0EE;
+}
+
+.modal-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-case-study:active,
+.btn-contact-social:active,
+.social-pill:active,
+.btn-back-to-top:active { transform: translateY(1px); }
+
+.btn-case-study:focus-visible,
+.social-pill:focus-visible,
+.btn-contact-social:focus-visible,
+.contact-direct-link:focus-visible,
+.btn-back-to-top:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Adjustments for Phase 02 Sections
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .experience-row {
+    grid-template-columns: 180px 1fr;
+  }
+
+  .experience-location-tag {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .contact-card-editorial {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 2rem;
+  }
+
+  .modal-gallery-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .portfolio-section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .section-title-large {
+    font-size: 2.25rem;
+  }
+
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .contact-direct-link {
+    padding: 1rem 1.25rem;
+  }
+
+  .editorial-footer-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

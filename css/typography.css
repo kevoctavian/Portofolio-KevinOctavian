@@ -1,0 +1,110 @@
+/* ==========================================================================
+   KEVIN OCTAVIANUS — PERSONAL PORTFOLIO 2026
+   Typography System
+   ========================================================================== */
+
+/* Display Typographic Scale */
+.text-hero {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: var(--fw-bold);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+/* Outlined typography treatment (Reference-inspired) */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.8px var(--color-text);
+  paint-order: stroke fill;
+  transition: color var(--duration-normal) var(--ease-editorial),
+              -webkit-text-stroke-color var(--duration-normal) var(--ease-editorial);
+}
+
+@media (max-width: 768px) {
+  .text-outline {
+    -webkit-text-stroke-width: 1.2px;
+  }
+}
+
+.text-solid {
+  color: var(--color-text);
+}
+
+/* Section Headings */
+.heading-section {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-1);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--lh-heading);
+}
+
+.heading-sub {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-2);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-card {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-3);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Technical Labels & Monospace Metadata */
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.text-mono-dark {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+/* Body & Copy Scale */
+.text-intro {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  font-weight: var(--fw-regular);
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+.text-body-standard {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  color: var(--color-muted);
+}
+
+.text-body-subtle {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  color: var(--color-muted);
+}
+
+/* Superscript metadata badge styling */
+sup.meta-count {
+  font-family: var(--font-mono);
+  font-size: 0.65em;
+  font-weight: var(--fw-medium);
+  vertical-align: super;
+  margin-left: 2px;
+  color: var(--color-muted);
+}

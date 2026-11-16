@@ -1,0 +1,185 @@
+/* ==========================================================================
+   KEVIN OCTAVIANUS — PERSONAL PORTFOLIO 2026
+   Animation Architecture & Entrance Choreography
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Minimalist Editorial Preloader
+   -------------------------------------------------------------------------- */
+#preloader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-surface);
+  z-index: var(--z-preloader);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2rem, 4vw, 4rem);
+  transform: translateY(0);
+  transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1);
+  will-change: transform;
+}
+
+#preloader.is-done {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.preloader-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.preloader-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+  margin: auto 0;
+}
+
+.preloader-monogram {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.preloader-monogram span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: preloader-fade-up 0.6s var(--ease-editorial) forwards;
+}
+
+.preloader-monogram span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+@keyframes preloader-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.preloader-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.preloader-counter {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.preloader-progress-track {
+  width: 100%;
+  max-width: 280px;
+  height: 2px;
+  background-color: var(--color-border);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.preloader-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-text);
+  transition: width 0.1s linear;
+}
+
+/* --------------------------------------------------------------------------
+   2. Entrance Animation Initial States (Driven by GSAP)
+   -------------------------------------------------------------------------- */
+/* Elements start hidden for entrance sequence */
+.animate-nav-item,
+.animate-hero-name,
+.animate-portrait,
+.animate-hero-intro,
+.animate-social-item,
+.animate-scroll-indicator,
+.hero-footer-bar {
+  will-change: transform, opacity;
+}
+
+/* Fallback for when JS is disabled or fails to load */
+html.no-js .animate-nav-item,
+html.no-js .animate-hero-name,
+html.no-js .animate-portrait,
+html.no-js .animate-hero-intro,
+html.no-js .animate-social-item,
+html.no-js .animate-scroll-indicator,
+html.no-js .hero-footer-bar {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+html.no-js #preloader {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Portrait Clip-Path Reveal
+   -------------------------------------------------------------------------- */
+.portrait-mask {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.2s var(--ease-editorial);
+}
+
+/* --------------------------------------------------------------------------
+   4. Accessibility: Prefers Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  #preloader {
+    display: none !important;
+  }
+
+  .status-dot::after {
+    animation: none !important;
+    display: none;
+  }
+
+  .scroll-mouse::before {
+    animation: none !important;
+  }
+
+  .animate-nav-item,
+  .animate-hero-name,
+  .animate-portrait,
+  .animate-hero-intro,
+  .animate-social-item,
+  .animate-scroll-indicator,
+  .hero-footer-bar {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

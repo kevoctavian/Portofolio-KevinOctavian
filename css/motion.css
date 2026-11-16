@@ -1,0 +1,525 @@
+/* ==========================================================================
+   KEVIN OCTAVIANUS — PERSONAL PORTFOLIO 2026
+   Motion Layer (Phase 03): stacking cards, ghost titles, split text,
+   custom cursor, hover previews, accordion experience, progress bar.
+   Loaded last so it can safely extend/override earlier files.
+   ========================================================================== */
+
+:root {
+  --page-gap: clamp(12px, 2.5vw, 32px);
+  --card-gap: 12px;
+  --nav-h: 88px;
+}
+
+@media (max-width: 1023px) { :root { --page-gap: 16px; --nav-h: 80px; } }
+@media (max-width: 767px)  { :root { --page-gap: 8px;  --card-gap: 8px; --nav-h: 72px; } }
+
+/* --------------------------------------------------------------------------
+   Lenis recommended resets
+   -------------------------------------------------------------------------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* --------------------------------------------------------------------------
+   1. Atmospheric cloud backdrop (pure CSS/SVG, no external assets)
+   -------------------------------------------------------------------------- */
+body { background-color: #B9B9B7; }
+
+body::before {
+  inset: -6%;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='1000'><filter id='c' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.0035 0.0065' numOctaves='5' seed='11'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.7 -0.62'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>"),
+    linear-gradient(180deg, #A9A9A7 0%, #C4C4C2 55%, #B2B2B0 100%);
+  background-size: cover, cover;
+  background-position: center;
+}
+
+/* --------------------------------------------------------------------------
+   2. Canvas becomes a stack of separate rounded cards
+   -------------------------------------------------------------------------- */
+.page-wrapper { padding: var(--page-gap); }
+
+.editorial-canvas {
+  display: block;
+  overflow: visible;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#main-content { display: block; }
+
+#main-content > section,
+.editorial-footer-bar {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--card-gap);
+}
+
+.editorial-footer-bar { margin-bottom: 0; }
+
+@media (max-width: 1023px) {
+  #main-content > section, .editorial-footer-bar { border-radius: var(--radius-lg); }
+}
+@media (max-width: 767px) {
+  #main-content > section, .editorial-footer-bar { border-radius: var(--radius-md); }
+}
+
+/* Dim overlay used while the next card slides over (driven by --dim) */
+[data-stack]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  opacity: var(--dim, 0);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 40;
+}
+
+/* Sticky stacking (enabled by JS on >=768px) */
+html.stack-on #main-content > [data-stack] {
+  position: sticky;
+  top: var(--stack-top, var(--page-gap));
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+/* Hero now sits under a floating nav */
+.hero-section {
+  min-height: calc(100svh - (var(--page-gap) * 2));
+  padding-top: calc(var(--nav-h) + clamp(0.25rem, 1vw, 1rem));
+}
+
+/* Dark card (Experience), mirrors the reference rhythm */
+#main-content > .portfolio-section.is-dark {
+  background-color: #232323;
+  border-color: #2e2e2e;
+  color: #fff;
+}
+.is-dark .section-title-large { color: #fff; }
+.is-dark .text-mono { color: #8f8f8f; }
+.is-dark .section-subtitle-editorial,
+.is-dark .pillar-desc { color: #a9a9a9; }
+
+/* --------------------------------------------------------------------------
+   3. Floating navigation (hide on scroll down, frosted pill when stuck)
+   -------------------------------------------------------------------------- */
+.editorial-nav {
+  position: fixed;
+  top: var(--page-gap);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: min(calc(100% - (var(--page-gap) * 2)), calc(var(--container-max) - (var(--page-gap) * 2)));
+  z-index: var(--z-header);
+  transition: top .45s var(--ease-editorial),
+              width .45s var(--ease-editorial),
+              padding .45s var(--ease-editorial),
+              background-color .35s ease,
+              box-shadow .35s ease,
+              border-color .35s ease,
+              border-radius .45s var(--ease-editorial);
+}
+
+.editorial-nav.is-stuck {
+  top: calc(var(--page-gap) + 6px);
+  width: min(calc(100% - (var(--page-gap) * 2) - 24px), 1120px);
+  padding: .55rem .6rem .55rem 1rem;
+  background-color: rgba(255, 255, 255, .78);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 14px 44px -14px rgba(0, 0, 0, .28);
+}
+
+.editorial-nav.is-stuck .status-pill { box-shadow: none; }
+
+/* --------------------------------------------------------------------------
+   4. Scroll progress bar
+   -------------------------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-text);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 160;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Split text + ghost titles
+   -------------------------------------------------------------------------- */
+.split-word { display: inline-block; white-space: nowrap; }
+
+.split-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: .08em 0 .14em;
+  margin: -.08em 0 -.14em;
+}
+.split-mask.is-open { overflow: visible; }
+
+.split-char { display: inline-block; will-change: transform; }
+
+.sw { display: inline-block; opacity: .16; will-change: opacity; }
+
+.section-header-editorial { position: relative; isolation: isolate; }
+
+.ghost-title {
+  position: absolute;
+  left: -.03em;
+  top: -.42em;
+  z-index: -1;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: clamp(5.5rem, 18vw, 18rem);
+  line-height: .8;
+  letter-spacing: -.05em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: rgba(23, 23, 23, .05);
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+.is-dark .ghost-title { color: rgba(255, 255, 255, .055); }
+
+/* --------------------------------------------------------------------------
+   6. Hero: cursor spotlight reveal + char wave
+   -------------------------------------------------------------------------- */
+.hero-portrait-frame { --mx: 50%; --my: 40%; --r: 1px; }
+
+.hero-portrait-img:hover { transform: none; filter: grayscale(100%) contrast(106%) brightness(98%); }
+
+.hero-portrait-ink {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: grayscale(1) contrast(1.35) brightness(.82) drop-shadow(0 0 0 transparent);
+  -webkit-mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), #000 0%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), #000 0%, #000 58%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-name .split-char { transition: none; }
+
+/* Real colour photo: no filter, just reveal it */
+.hero-portrait-ink.is-color { filter: none; }
+
+/* --------------------------------------------------------------------------
+   7. Selected work: aligned grid, parallax media, hover badge
+   -------------------------------------------------------------------------- */
+/* Cards sit side by side on one line, equal height */
+.projects-grid { align-items: stretch; }
+.project-card { height: 100%; }
+
+.project-card { transform-style: preserve-3d; }
+.project-card:hover { transform: none; }
+
+.project-media-wrapper { cursor: pointer; }
+
+.project-media-parallax {
+  position: absolute;
+  inset: -9% 0;
+  will-change: transform;
+}
+.project-media-parallax .project-img { width: 100%; height: 100%; }
+
+.project-open-badge {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 3;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1.35rem;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, .35);
+  opacity: 0;
+  transform: scale(.55) rotate(-45deg);
+  transition: opacity .35s ease, transform .5s var(--ease-editorial);
+  pointer-events: none;
+}
+.project-card:hover .project-open-badge,
+.project-media-wrapper:focus-within .project-open-badge { opacity: 1; transform: none; }
+
+@media (hover: none) {
+  .project-open-badge { opacity: 1; transform: none; width: 40px; height: 40px; font-size: 1.1rem; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Experience: dark accordion rows with animated hairlines
+   -------------------------------------------------------------------------- */
+.is-dark .experience-list { border-top-color: rgba(255, 255, 255, .14); }
+
+.experience-row {
+  position: relative;
+  grid-template-columns: 220px 1fr 170px;
+  border-bottom: 0;
+  transition: opacity .45s ease, filter .45s ease;
+}
+.experience-row::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, .14);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--line, 1));
+}
+
+.experience-list.has-hover .experience-row:not(.is-hovered) { opacity: .4; }
+
+.is-dark .experience-period,
+.is-dark .experience-location-tag { color: #8f8f8f; }
+.is-dark .experience-company-name { color: #9d9d9d; }
+.is-dark .experience-bullet-list li { color: #b3b3b3; }
+.is-dark .experience-bullet-list li::before { color: #fff; }
+
+.experience-role-title { font-size: clamp(1.3rem, 2.1vw, 1.9rem); line-height: 1.12; }
+.is-dark .experience-role-title { color: #fff; }
+
+.exp-toggle {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+.exp-toggle:focus-visible { outline-color: #fff; }
+
+.exp-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  margin-top: 2px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .3);
+  transition: background-color .35s ease, border-color .35s ease, transform .5s var(--ease-editorial);
+}
+.exp-icon::before,
+.exp-icon::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 12px; height: 1.5px;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  transition: transform .5s var(--ease-editorial), background-color .35s ease;
+}
+.exp-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+.exp-toggle:hover .exp-icon { background-color: #fff; border-color: #fff; }
+.exp-toggle:hover .exp-icon::before,
+.exp-toggle:hover .exp-icon::after { background-color: #171717; }
+
+.experience-row.is-open .exp-icon { transform: rotate(180deg); }
+.experience-row.is-open .exp-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+/* Pure-CSS height animation: works with reduced motion too */
+.exp-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .6s var(--ease-editorial);
+}
+.exp-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: visibility 0s linear .6s, opacity .4s ease, transform .6s var(--ease-editorial);
+}
+.experience-row.is-open .exp-panel { grid-template-rows: 1fr; }
+.experience-row.is-open .exp-panel-inner {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s, .12s, 0s;
+}
+.exp-panel-inner > :first-child { margin-top: .75rem; }
+
+/* Photos inside expanded rows */
+.exp-figure {
+  margin: 1.25rem 0 .25rem;
+  max-width: 460px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: #1b1b1b;
+}
+.exp-figure img { display: block; width: 100%; height: auto; max-height: 300px; object-fit: cover; object-position: 50% 35%; }
+.exp-figure--doc { background: #fff; }
+.exp-figure--doc img { object-fit: contain; max-height: 340px; }
+
+/* No-JS: everything stays open */
+html.no-js .exp-panel { grid-template-rows: 1fr; }
+html.no-js .exp-panel-inner { visibility: visible; opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------------
+   9. Custom cursor + floating preview (fine pointers only)
+   -------------------------------------------------------------------------- */
+.cursor-ring,
+.cursor-label,
+.hover-preview { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor-ring {
+    display: block;
+    position: fixed;
+    left: 0; top: 0;
+    width: 34px; height: 34px;
+    margin: -17px 0 0 -17px;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 2000;
+    opacity: 0;
+    transition: width .35s var(--ease-editorial), height .35s var(--ease-editorial),
+                margin .35s var(--ease-editorial), background-color .3s ease, opacity .25s ease;
+  }
+  .cursor-ring.is-active { opacity: 1; }
+  .cursor-ring.is-link {
+    width: 60px; height: 60px; margin: -30px 0 0 -30px;
+    background-color: rgba(255, 255, 255, .85);
+  }
+  .cursor-ring.is-label { opacity: 0; }
+
+  .cursor-label {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    left: 0; top: 0;
+    width: 92px; height: 92px;
+    margin: -46px 0 0 -46px;
+    border-radius: 50%;
+    background: #fff;
+    color: #171717;
+    border: 1px solid rgba(23, 23, 23, .12);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, .4);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 2001;
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .hover-preview {
+    display: block;
+    position: fixed;
+    left: 0; top: 0;
+    width: clamp(210px, 19vw, 290px);
+    aspect-ratio: 4 / 3;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .hover-preview-card {
+    position: relative;
+    width: 100%; height: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--color-bg);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 34px 80px -24px rgba(0, 0, 0, .6);
+  }
+  .hover-preview-card img {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .hover-preview-tile {
+    display: none;
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.1rem 1.2rem;
+    color: var(--color-text);
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.9), rgba(235,235,233,.9)),
+      var(--color-bg);
+  }
+  .hover-preview.is-img img { display: block; }
+  .hover-preview.is-tile .hover-preview-tile { display: flex; }
+
+  .hp-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .hp-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+    line-height: 1;
+    letter-spacing: -.04em;
+  }
+}
+
+/* Wheel scrolling inside the modal (Lenis ignores it via data-lenis-prevent) */
+.modal-dialog-box { overscroll-behavior: contain; }
+
+/* --------------------------------------------------------------------------
+   10. Modal: circular reveal helpers
+   -------------------------------------------------------------------------- */
+.modal-backdrop.is-revealing { transition: none; opacity: 1; }
+.modal-backdrop.is-revealing .modal-dialog-box { transition: none; transform: none; opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   11. Mobile: cards flow normally (no stacking), keep reveals only
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .hero-section { padding-top: calc(var(--nav-h) + .25rem); }
+  .experience-row { grid-template-columns: 1fr; }
+  .ghost-title { font-size: clamp(4.5rem, 26vw, 9rem); top: -.3em; }
+  .editorial-nav.is-stuck { padding: .4rem .5rem .4rem .75rem; }
+}
+
+/* --------------------------------------------------------------------------
+   12. Reduced motion: switch the whole layer off
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress, .cursor-ring, .cursor-label, .hover-preview { display: none !important; }
+  .sw { opacity: 1; }
+  .exp-panel, .exp-panel-inner, .exp-icon { transition: none !important; }
+}

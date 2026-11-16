@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="800" height="900" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EAEAE8"/>
+      <stop offset="100%" stop-color="#DCDCDC"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="900" fill="url(#bgGrad)"/>
+  <circle cx="400" cy="320" r="300" fill="url(#halo)"/>
+
+  <!-- Editorial Silhouette Silhouette Representation -->
+  <g fill="#262626" opacity="0.88">
+    <!-- Shoulders & Torso -->
+    <path d="M120 900 C150 720, 240 620, 310 590 C340 575, 460 575, 490 590 C560 620, 650 720, 680 900 Z"/>
+    <!-- Neck -->
+    <path d="M350 580 L450 580 L445 470 L355 470 Z"/>
+    <!-- Head Oval -->
+    <ellipse cx="400" cy="360" rx="145" ry="180"/>
+  </g>
+
+  <!-- Hair / Form Framing -->
+  <path d="M250 350 C245 230, 310 160, 400 160 C490 160, 555 230, 550 350 C515 260, 460 220, 400 220 C340 220, 285 260, 250 350 Z" fill="#171717"/>
+
+  <!-- Minimalist Editorial Grid Overlay -->
+  <line x1="100" y1="450" x2="700" y2="450" stroke="#777777" stroke-width="0.75" stroke-dasharray="4 6" opacity="0.4"/>
+  <line x1="400" y1="150" x2="400" y2="750" stroke="#777777" stroke-width="0.75" stroke-dasharray="4 6" opacity="0.4"/>
+
+  <!-- Typography Metadata -->
+  <text x="400" y="520" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="600" fill="#171717" letter-spacing="4">KEVIN OCTAVIANUS</text>
+  <text x="400" y="546" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#777777" letter-spacing="3">EDITORIAL PORTRAIT PLACEHOLDER</text>
+</svg>
